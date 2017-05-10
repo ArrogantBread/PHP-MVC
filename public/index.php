@@ -10,12 +10,13 @@
 * without the express permission of Nathan "ArrogantBread" Wright
 */
 
-//--- Load all files
-require_once "bootstrap.php";
-require_once "config/config.php";
+//--- Load config
+require_once __DIR__ . '/../app/config/config.php';
+//--- PSR-4 autoLoading
+require_once __DIR__ . '/../vendor/autoload.php';
 
-//--- Inctance of the controller
-$controller = new controllers\controller();
-
-//--- Instance of app
+//--- create instance of App
 $app = new App\App();
+
+//--- Set the acceptable routes
+require_once __DIR__ . '/../app/routes.php';

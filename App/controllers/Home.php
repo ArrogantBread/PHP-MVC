@@ -1,5 +1,5 @@
 <?php
-namespace controllers;
+namespace App\Controllers;
 /*
 * @File: home.php
 * @Author: Nathan Wright
@@ -12,13 +12,17 @@ namespace controllers;
 */
 // use Controllers as Controller;
 
-class Home {
+class Home extends Controller {
 
     public function index() {
         // load views
-        require ROOT . 'views/template/header.php';
-        require ROOT . 'views/home/index.php';
-        require ROOT . 'views/template/footer.php';
+        require APPROOT . 'views/template/header.php';
+        require APPROOT . 'views/home/index.php';
+        require APPROOT . 'views/template/footer.php';
+    }
+
+    public function edit() {
+
     }
 
 }

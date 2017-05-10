@@ -12,44 +12,57 @@ namespace App;
 */
 
 class App {
-
-  //--- default values
-  protected $controller = 'home';
-  protected $method = null;
   //--- empty array - for URI params
   protected $params = array();
 
   public function __construct() {
     //--- Split URI into array
-    $URI = $this::parseUrl();
-    echo $this->controller;
-    //--- Does the page (controller) exist
-    if (file_exists(ROOT . "controllers/" . $this->controller . ".php")) {
-      require_once ROOT . "controllers/" . $this->controller . ".php";
-      $this->controller = new $this->controller();
+    $URI = $this->parseUrl();
+  }
 
-      //--- Does the method exist within the object
-      if (!empty($this->method)) {
-        if (method_exists($this->controller, $this->method)) {
+  private static function routeURI($controller, $method) {
+    //--- the controller exixts
+    if (file_exists(APPROOT . '/controllers//' . $controller . '.php')) {
+      //--- Set the namespaced path to the controller
+      $ns = 'App\controllers\\' . $controller;
+      //--- new instance of the controller
+      $controller = new $ns;
 
-        }
-      } else {
-        $this->controller->index();
-      }
+      //--- check the method exists, if not -> index
+      if (method_exists($controller, $method)) {
+        //--- pass params to the method
+        if (!empty($method)) {
+          // If no parameters are given, just call the method without parameters, like $this->home->method();
+          $controller->{$method}();
+        };
+      };
+    };
+  }
+
+  public static function get($URI, $closure) {
+    if($_SERVER['REQUEST_URI'] == $URI) {
+      //--- run the closure
+      $route = $closure->__invoke();
+
+      //--- Parse the result
+      $URI = explode(':', $route);
+      
+      //--- store the controller and method (globals are bad m'kay)
+      $controller = isset($URI[0]) ? $URI[0] : null;
+      $method = isset($URI[1]) ? $URI[1] : null;
+      //--- Statics are shit
+      self::routeURI($controller, $method);
     }
-
   }
 
   protected function parseURL() {
+    //--- get any params from the URI, the method and
+    //--- controller are gethered from the routes file
     if (isset($_SERVER['REQUEST_URI'])) {
       //--- Split URI
       $URI = trim($_SERVER['REQUEST_URI'], '/');
       $URI = filter_var($URI, FILTER_SANITIZE_URL);
       $URI = explode('/', $URI);
-
-      //--- Sort URI into vars
-      $this->controller = isset($URI[0]) ? $URI[0] : null;
-      $this->method = isset($URI[1]) ? $URI[1] : null;
 
       //--- unset the controller and action, store params
       unset($URI[0], $URI[1]);

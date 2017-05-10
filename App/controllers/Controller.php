@@ -1,5 +1,4 @@
-<?php
-namespace controllers;
+<?php namespace App\Controllers;
 /*
 * @File: controller.php
 * @Author: Nathan Wright
@@ -11,15 +10,15 @@ namespace controllers;
 * without the express permission of Nathan "ArrogantBread" Wright
 */
 
-class controller {
+class Controller {
 
   public $db = null;
   public $model = null;
 
   public function __construct() {
     //--- open the DBC and load the model
-    $this->openDBC();
-    $this->loadModel();
+    // $this->openDBC();
+    // $this->loadModel();
   }
 
   protected function openDBC() {

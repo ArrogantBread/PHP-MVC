@@ -1,5 +1,5 @@
 <?php
-namespace controller\auth;
+namespace App\controller\auth;
 /*
 * @File: registerController.php
 * @Author: Nathan Wright
@@ -12,7 +12,7 @@ namespace controller\auth;
 */
 use controller
 
-class registerController extends controller {
+class registerController extends Auth {
 
   //where to send users after registration
   private $redirectTo = '/home'

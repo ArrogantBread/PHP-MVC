@@ -1,20 +1,18 @@
 <?php
+namespace App\controller\auth;
 /*
-* @File: routes.php
+* @File: loginController.php
 * @Author: Nathan Wright
-* @Created 03-05-17
-* @Last modified: 03-05-17
+* @Created 04-05-17
+* @Last modified: 04-05-17
 *
 * Copyright (C) Nathan Wright  - All Rights Reserved - https://nathanwright.me/
 * Unauthorized copying of this file, via any medium is strictly prohibited
 * without the express permission of Nathan "ArrogantBread" Wright
 */
 
-Route::add('/', function () {
-  // Auth::check() ? return view('home') : return view('dog')
 
-});
+class loginController extends Auth {
 
-Route::add('/dog', function () {
-    return view('dog');
-});
+
+};

@@ -10,7 +10,7 @@
 * without the express permission of Nathan "ArrogantBread" Wright
 */
 
-//--- Error Reporting - Disable form production
+//--- Error Reporting
 define('ERRORS', true);
 
 if (ERRORS) {
@@ -18,8 +18,8 @@ if (ERRORS) {
   ini_set("display_errors", 1);
 }
 
-//--- app root
-define('ROOT', dirname(__DIR__) . '/');
+//--- App root
+define('APPROOT', dirname(__DIR__) . '/');
 
 //--- Database config
 define('MYSQL_HOST', '127.0.0.1');

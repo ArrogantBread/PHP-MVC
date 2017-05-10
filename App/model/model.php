@@ -1,7 +1,7 @@
 <?php
-namespace controller\auth;
+namespace App\model;
 /*
-* @File: loginController.php
+* @File: model.php
 * @Author: Nathan Wright
 * @Created 04-05-17
 * @Last modified: 04-05-17
@@ -12,7 +12,15 @@ namespace controller\auth;
 */
 
 
-class loginController extends controller {
+class model {
 
+  protected $db = nil;
 
-};
+  public function __construct($db) {
+    try {
+      $this->db = $db;
+    } catch (PDOException $e) {
+      exit('Database connection could not be established.');
+    };
+  }
+}
