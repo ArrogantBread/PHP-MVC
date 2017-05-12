@@ -13,6 +13,8 @@
 * Process URI and route as nescesary, this is a *bad* replacement for the htaccess rewrite engine
 */
 
+session_start();
+
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {

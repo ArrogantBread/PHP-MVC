@@ -10,9 +10,26 @@
 * without the express permission of Nathan "ArrogantBread" Wright
 */
 use App\App as App;
+use App\controllers\Auth as Auth;
 
 App::get('/', function () {
-  return 'home:index';
+  return 'auth:login';
+});
+
+App::get('/home', function () {
+ if (auth::check()) {
+   return 'home:index';
+ } else {
+   return 'auth:login';
+ }
+});
+
+App::get('/logout', function () {
+  if (auth::check()) {
+    return 'auth:logout';
+  } else {
+    return 'auth:login';
+  };
 });
 
 App::get('/login', function () {
@@ -21,8 +38,4 @@ App::get('/login', function () {
 
 App::get('/register', function () {
   return 'auth:register';
-});
-
-App::get('/test', function () {
-  if (1 == 1) {return 'home:index';};
 });

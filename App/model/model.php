@@ -11,16 +11,29 @@ namespace App\model;
 * without the express permission of Nathan "ArrogantBread" Wright
 */
 
+use PDO;
+
 
 class model {
 
-  protected $db = nil;
+  public $db = null;
 
-  public function __construct($db) {
+  public function __construct() {
+    //--- create db connection with exception handling
     try {
-      $this->db = $db;
+      $this->db = $this->DBConnect();
     } catch (PDOException $e) {
       exit('Database connection could not be established.');
     };
+  }
+
+  public function DBConnect() {
+    //--- PDO options
+    $options = array(
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+    );
+    //--- open a database connection
+    return(new PDO(MYSQL_TYPE . ':host=' . MYSQL_HOST . ';dbname=' . MYSQL_NAME . ';', MYSQL_USER, MYSQL_PASS, $options));
   }
 }

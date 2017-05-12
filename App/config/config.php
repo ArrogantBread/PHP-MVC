@@ -22,6 +22,7 @@ if (ERRORS) {
 define('APPROOT', dirname(__DIR__) . '/');
 
 //--- Database config
+define('MYSQL_TYPE', 'mysql');
 define('MYSQL_HOST', '127.0.0.1');
 define('MYSQL_NAME', 'usersystem');
 define('MYSQL_USER', 'root');

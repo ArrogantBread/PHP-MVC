@@ -14,7 +14,7 @@
        </div>
        <div class="form-group row">
          <div style="width:300px;">
-           <button type="submit" class="btn btn-outline-success" name="login" value="login">Log in</button>
+           <button type="submit" class="btn btn-outline-success" name="action" value="login">Log in</button>
            <button type="submit" class="btn btn-outline-danger">Forgotten Password</button>
          </div>
        </div>

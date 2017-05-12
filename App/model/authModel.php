@@ -15,12 +15,69 @@ namespace App\Model;
 class AuthModel extends Model
 {
 
-  
-  private function login($uName) {
-    $sql = "SELECT * FROM users WHERE username=?";
-    $query = $this->db->prepare($sql);
-    $query->execute();
+  public function login($data) {
 
-    return $query->fetchAll();
+    $DBC = $this->DBConnect();
+
+    $sql = "SELECT * FROM users WHERE user_name=:uname";
+    $query = $DBC->prepare($sql);
+    $params = array(':uname' => $data['user_name']);
+
+    $query->execute($params);
+
+    $result = $query->fetch();
+
+    if (!empty($result)) {
+      //--- check passwords match
+      if (password_verify($data['user_pass'], $result->pass_hash)) {
+        $_SESSION['logged'] = true;
+        $_SESSION['username'] = $data['user_name'];
+        header("location: /home");
+      } else {
+        return "Username or password incorrect";
+      }
+    } else {
+      return "This user does not exist";
+    }
+  }
+
+  public function create($data) {
+    //--- Final check passwords match
+    if (!($data['user_pass'] == $data['user_passConf']) || empty($data['user_name']) || empty('user_email')) {return 'Passwords do not match';};
+
+    $userExists = $this->checkUserExists($data['user_name'], $data['user_email']);
+    if ($userExists) {return 'Error, user already created with that name/email';};
+    //--- Hash the pass
+    $hash = password_hash($data['user_pass'], PASSWORD_BCRYPT);
+
+    //--- Query
+    $DBC = $this->DBConnect();
+    $sql = "INSERT INTO users (user_name, user_email, pass_hash) VALUES (:uname, :email, :passhash)";
+    $query = $DBC->prepare($sql);
+    //--- bind params
+    $params = array(':uname' => $data['user_name'], ':email' => $data['user_email'], ':passhash' => $hash);
+
+    //--- Execute
+    if ($query->execute($params)) {
+      $_SESSION['logged'] = true;
+      $_SESSION['username'] = $data['user_name'];
+      header("location: /home");
+    };
+
+
+  }
+
+  public function checkUserExists($uname, $email) {
+    $DBC = $this->DBConnect();
+
+    $sql = "SELECT * FROM users WHERE user_name=:uname OR user_email=:email";
+    $query = $DBC->prepare($sql);
+    $params = array(':uname' => $uname, ':email' => $email);
+
+    $query->execute($params);
+
+    $result = $query->fetchAll();
+
+    if (!empty($result)) {return true;} else {return false;};
   }
 }
