@@ -16,7 +16,7 @@ class App {
   protected $params = array();
 
   public function __construct() {
-    //--- Split URI into array
+    //--- Split URI into array - Only realy used for params at this point
     $URI = $this->parseUrl();
   }
 
@@ -46,7 +46,7 @@ class App {
 
       //--- Parse the result
       $URI = explode(':', $route);
-      
+
       //--- store the controller and method (globals are bad m'kay)
       $controller = isset($URI[0]) ? $URI[0] : null;
       $method = isset($URI[1]) ? $URI[1] : null;

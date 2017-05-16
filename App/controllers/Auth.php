@@ -54,6 +54,7 @@ class Auth extends Controller {
   }
 
   public function register() {
+    if (self::check()) {return header("location: /home");};
     //--- load views
     require APPROOT . 'views/template/header.php';
     require APPROOT . 'views/login/register.php';
