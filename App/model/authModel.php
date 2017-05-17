@@ -30,8 +30,10 @@ class AuthModel extends Model
     if (!empty($result)) {
       //--- check passwords match
       if (password_verify($data['user_pass'], $result->pass_hash)) {
+        //--- set session vars
         $_SESSION['logged'] = true;
         $_SESSION['username'] = $data['user_name'];
+        //--- set the URI
         header("location: /home");
       } else {
         return "Username or password incorrect";
@@ -42,11 +44,14 @@ class AuthModel extends Model
   }
 
   public function create($data) {
+    //--- XSS Protection (kinda)
+    $data = filter_var_array($data, FILTER_SANITIZE_SPECIAL_CHARS);
     //--- Final check passwords match
     if (!($data['user_pass'] == $data['user_passConf']) || empty($data['user_name']) || empty('user_email')) {return 'Passwords do not match';};
-
+    //--- Check if Username/email already used
     $userExists = $this->checkUserExists($data['user_name'], $data['user_email']);
     if ($userExists) {return 'Error, user already created with that name/email';};
+
     //--- Hash the pass
     $hash = password_hash($data['user_pass'], PASSWORD_BCRYPT);
 
@@ -68,16 +73,20 @@ class AuthModel extends Model
   }
 
   public function checkUserExists($uname, $email) {
+    //--- Get the connection
     $DBC = $this->DBConnect();
 
+    //--- Prepare the query
     $sql = "SELECT * FROM users WHERE user_name=:uname OR user_email=:email";
     $query = $DBC->prepare($sql);
+    //--- set the params
     $params = array(':uname' => $uname, ':email' => $email);
 
     $query->execute($params);
 
+    //--- fetch associative array
     $result = $query->fetchAll();
-
+    //--- process
     if (!empty($result)) {return true;} else {return false;};
   }
 }
