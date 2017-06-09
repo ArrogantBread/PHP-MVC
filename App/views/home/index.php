@@ -1,39 +1,35 @@
-Logout <a href="/logout">Here</a>
-<div class="login" style="margin-top: 15%;">
-  <div class="row justify-content-center">
-    <h4><?php echo "Hello " . $_SESSION['username'] ?></h4>
+<?php use App\controllers\Auth as Auth; ?>
+<div class="container" style="text-align: center;padding-top: 15%;">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-2">
+      <?php if (auth::check()) {
+        echo '<a href="/logout"><img class="homeImg" src="public/images/login.png" alt="logout"></a>';
+      } else {
+        echo '<a href="/login"><img class="homeImg" src="public/images/login.png" alt="login"></a>';
+      };
+      ?>
+    </div>
+    <div class="col col-lg-2">
+      <a href='/gallery'><img class="homeImg" src="public/images/gallery.png" alt="login"></a>
+    </div>
+    <div class="col col-lg-2">
+      <a href='/home/log'><img class="homeImg" src="public/images/edit.png" alt="login"></a>
+    </div>
   </div>
-  <div class="row justify-content-center">
-    Width: <span id="width"></span>
-  </div>
-  <div class="row justify-content-center">
-    Height: <span id="height"></span>
-  </div>
-  <div class="row justify-content-center">
-    Browser: <span id="browser"></span>
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-2">
+      <?php if (auth::check()) {
+        echo "<p class='homeText'>Logout</p>";
+      } else {
+        echo "<p class='homeText'>Login</p>";
+      };
+      ?>
+    </div>
+    <div class="col col-lg-2">
+      Gallery
+    </div>
+    <div class="col col-lg-2">
+      View Logs
+    </div>
   </div>
 </div>
-
-<script type="text/javascript">
-
-
-function browserTester(browserString) {
-    return navigator.userAgent.toLowerCase().indexOf(browserString) > -1;
-};
-
-$( document ).ready(function() {
-  if(browserTester('chrome')) {
-    var browser = "chrome"
-  } else if(browserTester('safari')) {
-    var browser = "safari"
-  } else if(browserTester('msie')) {
-    var browser = "Internet Explorer"
-  }
-
-  $("#width").html($(window).width());   // returns height of browser viewport
-  $("#height").html($(window).height());   // returns width of browser viewport
-  $("#browser").html(browser);   // returns width of browser viewport
-});
-
-
-</script>

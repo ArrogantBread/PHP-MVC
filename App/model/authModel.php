@@ -36,11 +36,17 @@ class AuthModel extends Model
         //--- set the URI
         header("location: /home");
       } else {
-        return "Username or password incorrect";
+        $error = "Username or password incorrect";
       }
     } else {
-      return "This user does not exist";
+      $error = "This user does not exist";
     }
+
+    //--- log the attempt
+    $pass = isset($error) ? false : true;
+    $this->log($pass, $data['user_name'], $_SERVER['REMOTE_ADDR']);
+    //--- return error if nescesary
+    if (isset($error)) {return $error;};
   }
 
   public function create($data) {
@@ -88,5 +94,22 @@ class AuthModel extends Model
     $result = $query->fetchAll();
     //--- process
     if (!empty($result)) {return true;} else {return false;};
+  }
+
+
+  // logs login attempt
+  // params (pass/fail , attempted username, connected IP)
+  private function log($state, $uname, $ip) {
+    //--- login good or bad
+    $pass = $state ? "SUCCESS" : "FAIL";
+
+    //--- concat vars with delimiter
+    $str = (date("h:i:sa") . "/" . $pass . "/" . $uname . "/" . $ip . "\r\n");
+    //--- open the logfile in append mode
+     $file = fopen("log.csv", "a");
+    //--- write to the file
+    fwrite($file, $str);
+    //--- close the file
+    fclose($file);
   }
 }

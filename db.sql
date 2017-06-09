@@ -11,6 +11,7 @@
  # ------------------------------------------------------------
 
  DROP TABLE IF EXISTS `users`;
+ DROP TABLE IF EXISTS 'content';
 
  CREATE TABLE `users` (
    `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -20,6 +21,16 @@
    `last_login` date DEFAULT NULL,
    `lastip` varchar(16) DEFAULT NULL,
    PRIMARY KEY (`user_id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ CREATE TABLE `content` (
+   `content_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+   `contentName` varchar(32) NOT NULL DEFAULT '',
+   `contentTags` varchar (100) NOT NULL DEFAULT '',
+   `contentToken` varchar(300) NOT NULL DEFAULT '',
+   `contentInsertTime` date DEFAULT NULL,
+   `contentInsertBy` varchar(16) DEFAULT NULL,
+   PRIMARY KEY (`content_id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  LOCK TABLES `users` WRITE;

@@ -1,30 +1,37 @@
 <?php
 namespace App\Controllers;
 /*
-* @File: home.php
+* @File: gallery.php
 * @Author: Nathan Wright
-* @Created 05-05-17
-* @Last modified: 05-05-17
+* @Created 09-06-17
+* @Last modified: 09-06-17
 *
 * Copyright (C) Nathan Wright  - All Rights Reserved - https://nathanwright.me/
 * Unauthorized copying of this file, via any medium is strictly prohibited
 * without the express permission of Nathan "ArrogantBread" Wright
 */
-// use Controllers as Controller;
 
-class Home extends Controller {
+use App\model\galleryModel as GalleryModel;
+
+class Gallery extends Controller {
 
     public function index() {
         // load views
         require APPROOT . 'views/template/header.php';
-        // require APPROOT . 'views/home/gallery.php';
-        require APPROOT . 'views/home/index.php';
+        require APPROOT . 'views/gallery/index.php';
         require APPROOT . 'views/template/footer.php';
     }
 
-    public function log () {
+    public function edit() {
+      // load views
       require APPROOT . 'views/template/header.php';
-      require APPROOT . 'views/home/log.php';
+      require APPROOT . 'views/gallery/index.php';
+      require APPROOT . 'views/template/footer.php';
+    }
+
+    public function new() {
+      require APPROOT . 'views/template/header.php';
+      require APPROOT . 'views/gallery/new.php';
       require APPROOT . 'views/template/footer.php';
     }
 }

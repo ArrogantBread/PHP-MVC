@@ -1,0 +1,109 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+* {
+  font-family: roboto;
+}
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+
+.homeImg {
+  max-width: 40px;
+  text-align: center;
+}
+
+.homeText {
+  text-align: center;
+}
+
+#content {
+  padding-top: 20%;
+  margin: auto;
+  width: 90%;
+  transition: all 0.6s ease;
+  /*padding: 0;*/
+}
+
+#contentTop {
+  padding-top: 20%;
+  text-align: center;
+  width: 90%;
+  transition: all 0.6s ease;
+  /*padding: 0;*/
+}
+
+#content.top {
+  padding-top: 10px;
+}
+
+#contentTop.top {
+  padding-top: 10px;
+}
+
+#query.top {
+  margin:0;
+}
+
+#query {
+  outline: none;
+  width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  display: absolute;
+}
+
+.thumbnail {
+  max-width: 300px;
+}
+
+#searchResult {
+  display: inline;
+  padding: 5px;
+}
+
+.result {
+  border: 1px solid grey;
+  width: 300px;
+  max-height:100%;
+  overflow: hidden;
+  display: inline-block;
+  margin:10px;
+  background-color: #eee;
+}
+
+.thumbnail {
+  max-height: 150px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*---------------------STYLING FOR THE INDIVIDUAL PRODUCT PAGES*/
+.imagePage {
+  max-width: 50%;
+  margin: auto;
+  display: Block;
+}
+#back {
+  float: left;
+}
+
+.content {
+  padding-top: 0px;
+  /*width: 90%;*/
+  text-align: center;
+
+}
+.description {
+  max-width: 45%;
+  display: block;
+  margin: auto;
+  padding-top: 10px;
+}
