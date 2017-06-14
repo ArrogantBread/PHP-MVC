@@ -16,16 +16,19 @@ use App\model\galleryModel as GalleryModel;
 class Gallery extends Controller {
 
     public function index() {
+      $model = new galleryModel();
+      $gallery = $model->fetchImg();
+
         // load views
-        require APPROOT . 'views/template/header.php';
-        require APPROOT . 'views/gallery/index.php';
-        require APPROOT . 'views/template/footer.php';
+      require APPROOT . 'views/template/header.php';
+      require APPROOT . 'views/gallery/index.php';
+      require APPROOT . 'views/template/footer.php';
     }
 
     public function edit() {
       // load views
       require APPROOT . 'views/template/header.php';
-      require APPROOT . 'views/gallery/index.php';
+      require APPROOT . 'views/gallery/edit.php';
       require APPROOT . 'views/template/footer.php';
     }
 

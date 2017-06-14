@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="row justify-content-md-center">
-    <div class="col col-lg-2">
+    <div style="padding-right: 8px;" class="col col-lg-2">
       <?php if (auth::check()) {
         echo "<p class='homeText'>Logout</p>";
       } else {

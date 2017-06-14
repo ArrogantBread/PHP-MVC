@@ -1,38 +1,27 @@
-<div class="row justify-content-md-center">
+<div class="row" style="margin-left: 20px;">
+  <a href="/home" style="float:left;">< Return Home</a>
+</div>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Username</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@TwBootstrap</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row justify-content-md-center">
+  <div style="height:400px;width:700px;border:1px solid #ccc;overflow:auto;">
+    <pre id="logBox">
+<?php
+$fail = 0;
+$pass = 0;
+foreach ($logArr as $_x) {
+        echo " TIME: " . $_x[0];
+        echo " - STATUS: " . $_x[1];
+        echo " - USERNAME: " . $_x[2];
+        echo " - IP: " . $_x[3];
+
+      ($_x[1] == "FAIL") ? $fail += 1 : $pass += 1;
+      } ?>
+    </pre>
+  </div>
+</div>
+<div class="row justify-content-md-center">
+  <div style="width:700px;">
+    Number of unsucessful login attempts: <?php echo $fail; ?> <br />
+    Number of sucessful login attempts  : <?php echo $pass; ?>
+  </div>
 </div>

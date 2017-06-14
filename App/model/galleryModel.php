@@ -17,7 +17,7 @@ class galleryModel extends Model {
     $DBC = $this->DBConnect();
 
     //--- Prepare the query
-    $sql = "SELECT * FROM gallery";
+    $sql = "SELECT * FROM content";
     $query = $DBC->prepare($sql);
 
     //--- execute - no params
@@ -25,6 +25,13 @@ class galleryModel extends Model {
 
     //--- fetch associative array
     return($query->fetchAll());
+  }
+
+  public function uploadImg() {
+    $error = nil;
+    $uploadDir = APPROOT . '/public/upload/';
+    
+
   }
 
 };

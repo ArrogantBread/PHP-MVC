@@ -10,7 +10,8 @@ namespace App\Controllers;
 * Unauthorized copying of this file, via any medium is strictly prohibited
 * without the express permission of Nathan "ArrogantBread" Wright
 */
-// use Controllers as Controller;
+
+use App\model\homeModel as model;
 
 class Home extends Controller {
 
@@ -23,6 +24,9 @@ class Home extends Controller {
     }
 
     public function log () {
+      $model = new model();
+      $logArr = $model->fetchLogs();
+
       require APPROOT . 'views/template/header.php';
       require APPROOT . 'views/home/log.php';
       require APPROOT . 'views/template/footer.php';

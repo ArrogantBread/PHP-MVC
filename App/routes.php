@@ -22,7 +22,7 @@ App::get('/home', function () {
 
 App::get('/home/log', function () {
   if (auth::check()) { return 'home:log'; };
-  return 'home:index';
+  // return 'home:index';
 });
 
 App::get('/logout', function () {

@@ -21,6 +21,13 @@ if (ERRORS) {
 //--- App root
 define('APPROOT', dirname(__DIR__) . '/');
 
+//--- URL constants, because ajax
+define('URL_PUBLIC_FOLDER', 'public');
+define('URL_PROTOCOL', '//');
+define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
+define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
+define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
+
 //--- Database config
 define('MYSQL_TYPE', 'mysql');
 define('MYSQL_HOST', '127.0.0.1');
