@@ -12,7 +12,6 @@ namespace App\Model;
 */
 
 
-
 class HomeModel extends Model {
 
   // open file and return data as a html array

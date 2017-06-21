@@ -101,7 +101,7 @@ class AuthModel extends Model
   // params (pass/fail , attempted username, connected IP)
   private function log($state, $uname, $ip) {
     //--- login good or bad
-    $pass = $state ? "SUCCESS" : "FAIL";
+    $pass = $state ? "PASS" : "FAIL";
 
     //--- concat vars with delimiter
     $str = (date("h:i:sa") . "/" . $pass . "/" . $uname . "/" . $ip . "\r\n");

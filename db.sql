@@ -13,7 +13,7 @@
  DROP TABLE IF EXISTS `users`;
  DROP TABLE IF EXISTS 'content';
 
- CREATE TABLE `users` (
+ CREATE TABLE IF NOT EXISTS `users` (
    `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
    `user_name` varchar(32) NOT NULL DEFAULT '',
    `user_email` varchar(100) NOT NULL DEFAULT '',
@@ -23,7 +23,7 @@
    PRIMARY KEY (`user_id`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
- CREATE TABLE `content` (
+ CREATE TABLE IF NOT EXISTS `content` (
    `content_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
    `contentName` varchar(32) NOT NULL DEFAULT '',
    `contentTags` varchar (100) NOT NULL DEFAULT '',

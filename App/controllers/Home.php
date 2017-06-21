@@ -12,15 +12,18 @@ namespace App\Controllers;
 */
 
 use App\model\homeModel as model;
+use App\model\galleryModel as GalleryModel;
 
 class Home extends Controller {
 
     public function index() {
-        // load views
-        require APPROOT . 'views/template/header.php';
-        // require APPROOT . 'views/home/gallery.php';
-        require APPROOT . 'views/home/index.php';
-        require APPROOT . 'views/template/footer.php';
+      $model = new GalleryModel();
+      $bgImg = $model->getBGImg();
+      // load views
+      require APPROOT . 'views/template/header.php';
+      // require APPROOT . 'views/home/gallery.php';
+      require APPROOT . 'views/home/index.php';
+      require APPROOT . 'views/template/footer.php';
     }
 
     public function log () {

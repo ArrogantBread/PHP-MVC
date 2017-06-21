@@ -10,7 +10,12 @@
       ?>
     </div>
     <div class="col col-lg-2">
-      <a href='/gallery'><img class="homeImg" src="public/images/gallery.png" alt="login"></a>
+      <?php if (auth::check()) {
+        echo '<a href="/gallery/edit"><img class="homeImg" src="public/images/gallery.png" alt="login"></a>';
+      } else {
+        echo '<a href="/gallery"><img class="homeImg" src="public/images/gallery.png" alt="login"></a>';
+      };
+      ?>
     </div>
     <div class="col col-lg-2">
       <a href='/home/log'><img class="homeImg" src="public/images/edit.png" alt="login"></a>
@@ -26,7 +31,12 @@
       ?>
     </div>
     <div class="col col-lg-2">
-      Gallery
+      <?php if (auth::check()) {
+        echo "Edit Gallery";
+      } else {
+        echo "Gallery";
+      };
+      ?>
     </div>
     <div class="col col-lg-2">
       View Logs

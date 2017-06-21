@@ -26,9 +26,19 @@ class Gallery extends Controller {
     }
 
     public function edit() {
+      $model = new galleryModel();
+
+      if (isset($_FILES['image']['name'])) {
+        $error = $model->uploadImg();
+      }
+
+      $gallery = $model->fetchImg();
+      $edit = true;
+
+
       // load views
       require APPROOT . 'views/template/header.php';
-      require APPROOT . 'views/gallery/edit.php';
+      require APPROOT . 'views/gallery/index.php';
       require APPROOT . 'views/template/footer.php';
     }
 
@@ -37,4 +47,5 @@ class Gallery extends Controller {
       require APPROOT . 'views/gallery/new.php';
       require APPROOT . 'views/template/footer.php';
     }
+
 }

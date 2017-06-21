@@ -10,7 +10,7 @@ $fail = 0;
 $pass = 0;
 foreach ($logArr as $_x) {
         echo " TIME: " . $_x[0];
-        echo " - STATUS: " . $_x[1];
+        echo " STATUS: " . $_x[1];
         echo " - USERNAME: " . $_x[2];
         echo " - IP: " . $_x[3];
 
